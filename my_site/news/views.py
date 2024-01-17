@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import News, Category
 from .forms import NewsForm
@@ -51,6 +51,13 @@ class CategoryNews(ListView):
 #     return render(request, 'news/category.html', {'news': news,
 #                                                   'categories': categories,
 #                                                   'category': category},)
+
+
+class ViewNews(DetailView):
+    model = News
+    context_object_name = 'news_item'
+    # template_name = 'news/news_detail.html'
+    # pk_url_kwarg = 'news_id'
 
 
 def view_news(request, news_id):
